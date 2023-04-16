@@ -41,7 +41,7 @@
                         <!-- Usage: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.ooadproject.App</mainClass>
+                            <mainClass>com.ooadproject/com.ooadproject.App</mainClass>
                         </configuration>
                     </execution>
                 </executions>

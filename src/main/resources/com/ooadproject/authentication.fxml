@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/13" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ooadproject.AuthenticationController">
+    <Label text="Quiz App" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+    <Separator orientation="VERTICAL" />
+    <HBox spacing="20">
+        <VBox spacing="10">
+            <Label text="Login" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+            <GridPane vgap="10">
+                <Label text="Email" />
+                <TextField fx:id="loginEmailField" GridPane.columnIndex="1" />
+                <Label text="Password" GridPane.rowIndex="1" />
+                <PasswordField fx:id="loginPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            </GridPane>
+            <HBox spacing="10">
+                <Button fx:id="loginAsQuizMasterButton" text="Login as QuizMaster" onAction="#loginAsQuizMaster"/>
+                <Button fx:id="loginAsParticipantButton" text="Login as Participant" onAction="#loginAsParticipant"/>
+            </HBox>
+        </VBox>
+        <VBox spacing="10">
+            <Label text="SignUp" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+            <GridPane vgap="10">
+                <Label text="Name" />
+                <TextField fx:id="signUpNameField" GridPane.columnIndex="1" />
+                <Label text="Email" GridPane.rowIndex="1" />
+                <TextField fx:id="signUpEmailField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label text="Password" GridPane.rowIndex="2" />
+                <PasswordField fx:id="signUpPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            </GridPane>
+            <HBox spacing="10">
+                <Button fx:id="signupAsQuizMasterButton" text="SignUp as QuizMaster" onAction="#signupAsQuizMaster"/>
+                <Button fx:id="signupAsParticipantButton" text="SignUp as Participant" onAction="#signupAsParticipant"/>
+            </HBox>
+        </VBox>
+    </HBox>
+</VBox>

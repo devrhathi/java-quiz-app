@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.time.*?>
+<?import java.util.*?>
+<?import javafx.stage.FileChooser?>
+
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/13" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ooadproject.CreateQuizWizardController">
+    <top>
+        <StackPane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #008080;">
+            <Label text="Create Quiz" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="24.0" />
+                </font>
+            </Label>
+        </StackPane>
+    </top>
+    <center>
+        <GridPane hgap="10.0" vgap="10.0" prefHeight="200.0" prefWidth="600.0" style="-fx-padding: 20px;">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" minWidth="100.0" />
+                <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" vgrow="NEVER" />
+                <RowConstraints minHeight="10.0" vgrow="NEVER" />
+            </rowConstraints>
+            <Label text="Import Quiz (.csv):" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <HBox GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <TextField fx:id="filePathTextField" prefWidth="200.0" />
+                <Button text="Browse..." onAction="#handleSelectFile"/>
+            </HBox>
+            <Label text="Quiz Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Quiz Ends In:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <!-- <Spinner fx:id="hourSpinner" min="0" max="23" value="0" GridPane.columnIndex="1" GridPane.rowIndex="2"/> -->
+            <!-- <Spinner fx:id="hourSpinner" min="0" max="23" value="0"/> -->
+            <!-- <Label text=":"  GridPane.columnIndex="2" GridPane.rowIndex="2"/> -->
+            <!-- <Spinner fx:id="minuteSpinner" min="0" max="59" value="0"  GridPane.columnIndex="3" GridPane.rowIndex="2"/> -->
+            
+            
+            <!-- <DateTimePicker GridPane.columnIndex="1" GridPane.rowIndex="2" /> -->
+            <Label text="Quiz Category:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button text="Create Quiz" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        </GridPane>
+    </center>
+</BorderPane>
