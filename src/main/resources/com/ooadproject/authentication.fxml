@@ -14,7 +14,7 @@
                 <Label text="Password" GridPane.rowIndex="1" />
                 <PasswordField fx:id="loginPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             </GridPane>
-            <HBox spacing="10">
+            <HBox spacing="10" alignment="CENTER">
                 <Button fx:id="loginAsQuizMasterButton" text="Login as QuizMaster" onAction="#loginAsQuizMaster"/>
                 <Button fx:id="loginAsParticipantButton" text="Login as Participant" onAction="#loginAsParticipant"/>
             </HBox>
@@ -29,11 +29,11 @@
                 <Label text="Password" GridPane.rowIndex="2" />
                 <PasswordField fx:id="signUpPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             </GridPane>
-            <HBox spacing="10">
+            <HBox spacing="10" alignment="CENTER">
                 <Button fx:id="signupAsQuizMasterButton" text="SignUp as QuizMaster" onAction="#signupAsQuizMaster"/>
                 <Button fx:id="signupAsParticipantButton" text="SignUp as Participant" onAction="#signupAsParticipant"/>
             </HBox>
         </VBox>
     </HBox>
-                <Button text="Go To Result Page" onAction="#switchToResult"/>
+    <Button text="Go To Result Page" onAction="#switchToResult" />
 </VBox>

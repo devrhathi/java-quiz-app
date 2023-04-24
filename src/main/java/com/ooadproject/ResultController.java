@@ -9,10 +9,18 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Sorts;
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import com.ooadproject.models.Database.Database;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import com.ooadproject.models.ResultModel.Result;
 
@@ -47,7 +55,10 @@ public class ResultController {
     MongoCollection<Document> collection;
 
     public void initialize() {
-        collection = Database.getInstance().getCollection("result");
+        mongoClient = MongoClients
+                .create("mongodb+srv://admin:ooadproject@cluster0.95wbe.mongodb.net/?retryWrites=true&w=majority");
+        database = mongoClient.getDatabase("quizapp");
+        collection = database.getCollection("result");
 
         attemptedByColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         quizNameColumn.setCellValueFactory(new PropertyValueFactory<>("quizName"));
@@ -59,12 +70,18 @@ public class ResultController {
         resultTable.getItems().addAll(results);
     }
 
+    @FXML
+    private void goBack() throws IOException{
+        App.setRoot("authentication");
+    }
+
     private void loadResults() {
         MongoCursor<Document> cursor = collection.find(Filters.eq("quizId", _id)).sort(Sorts.descending("marks"))
                 .iterator();
         results = new ArrayList<>();
         while (cursor.hasNext()) {
             Document doc = cursor.next();
+            System.out.println(doc.get("username").toString());
             Result result = new Result(doc);
             results.add(result);
         }

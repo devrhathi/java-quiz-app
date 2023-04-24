@@ -1,5 +1,8 @@
 package com.ooadproject.participant;
 
+import com.mongodb.client.*;
+import com.mongodb.client.model.Filters;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -7,10 +10,8 @@ import java.util.List;
 
 import org.bson.Document;
 
-import com.mongodb.client.MongoCollection;
 import com.ooadproject.App;
 import com.ooadproject.models.ResultModel.Result;
-import com.ooadproject.models.Database.Database;
 import com.ooadproject.models.QuizModel.Question;
 import com.ooadproject.models.QuizModel.Quiz;
 import com.ooadproject.models.UserModel.SingletonFactoryUser;
@@ -22,6 +23,8 @@ import org.bson.types.ObjectId;
 
 public class QuizListController {
     private static String quizId;
+    MongoClient mongoClient;
+    MongoDatabase database;
     MongoCollection<Document> collection;
     Quiz quizList;
 
@@ -58,8 +61,10 @@ public class QuizListController {
     }
 
     public void initialize() {
-        collection = Database.getInstance().getCollection("quiz");
-
+        mongoClient = MongoClients
+                .create("mongodb+srv://admin:ooadproject@cluster0.95wbe.mongodb.net/?retryWrites=true&w=majority");
+        database = mongoClient.getDatabase("quizapp");
+        collection = database.getCollection("quiz");
         resultMap = new HashMap<>();
         loadQuizData();
     }
@@ -121,13 +126,13 @@ public class QuizListController {
         for (int value : resultMap.values()) {
             totalMarks += value;
         }
+        System.out.println("Total Marks : " + totalMarks);
         if (saveResultToDB())
             App.setRoot("participantdashboard");
     }
 
     private boolean saveResultToDB() {
-        // collection = database.getCollection("result");
-        collection = Database.getInstance().getCollection("result");
+        collection = database.getCollection("result");
         Result result = new Result(SingletonFactoryUser.getInstance().getUser().getUsername(), quizList.getUsername(),
                 quizList.get_id(), quizList.getTitle(), quizList.getCreatedOn(), LocalDateTime.now().toString(),
                 totalMarks);

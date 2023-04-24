@@ -51,6 +51,7 @@
 
             <!-- <DateTimePicker GridPane.columnIndex="1" GridPane.rowIndex="2" /> -->
             <Button text="Create Quiz" GridPane.columnIndex="1" GridPane.rowIndex="3" onAction="#handleCreateQuiz" />
+            <Button text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="3" onAction="#goBack"/>
         </GridPane>
     </center>
 </BorderPane>

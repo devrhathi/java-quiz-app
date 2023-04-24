@@ -5,6 +5,9 @@ import com.mongodb.client.model.Filters;
 import com.ooadproject.App;
 import com.ooadproject.models.UserModel.SingletonFactoryUser;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -12,17 +15,18 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.bson.Document;
-
-import com.ooadproject.models.Database.Database;
 import com.ooadproject.models.QuizModel.Quiz;
+import com.ooadproject.models.ResultModel.Result;
 import com.ooadproject.ResultController;
 
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class QuizMasterDashboardController {
     @FXML
@@ -43,6 +47,8 @@ public class QuizMasterDashboardController {
     @FXML
     VBox vbox;
 
+    MongoClient mongoClient;
+    MongoDatabase database;
     MongoCollection<Document> collection;
     List<Quiz> quizList;
 
@@ -59,7 +65,10 @@ public class QuizMasterDashboardController {
     }
 
     public void initialize() {
-        collection = Database.getInstance().getCollection("quiz");
+        mongoClient = MongoClients
+                .create("mongodb+srv://admin:ooadproject@cluster0.95wbe.mongodb.net/?retryWrites=true&w=majority");
+        database = mongoClient.getDatabase("quizapp");
+        collection = database.getCollection("quiz");
 
         quizIdColumn.setCellValueFactory(new PropertyValueFactory<>("_id"));
         quizTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -83,12 +92,27 @@ public class QuizMasterDashboardController {
                 } else if (event.getClickCount() == 2) {
                     ResultController.setQuizId(selectedQuiz.get_id());
                     try {
-                        App.setRoot("result");
+                        FXMLLoader loader = new FXMLLoader(
+                                getClass().getResource("/com/ooadproject/result.fxml"));
+                        Parent root = loader.load();
+                        Scene currentScene = vbox.getScene();
+                        Scene newScene = new Scene(root);
+                        Stage stage = (Stage) currentScene.getWindow();
+                        stage.setScene(newScene);
+                        stage.show();
+
+                        // System.out.println("GOINGGGGGGGGGGGGGGGGGGGG!");
+                        // App.setRoot("result");
                     } catch (IOException e) {
                     }
                 }
             }
         });
+    }
+
+    @FXML
+    private void goBack() throws IOException{
+        App.setRoot("authentication");
     }
 
     @FXML

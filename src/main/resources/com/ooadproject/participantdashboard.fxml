@@ -17,4 +17,5 @@
             <TableColumn text="Marks Scored" fx:id="marksColumn"/>
         </columns>
     </TableView>
+    <Button text="Back" onAction="#goBack"/>
 </VBox>

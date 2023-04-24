@@ -16,5 +16,7 @@
         </columns>
     </TableView>
     <Button text="Create Quiz" onAction="#handleCreateQuiz"/>
+    <Button text="Back" onAction="#goBack"/>
+
 
 </VBox>
