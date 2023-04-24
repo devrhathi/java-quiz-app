@@ -9,7 +9,7 @@
 ## Issues to fix
 
 ```
-[ ] Add Back Button in QuizMaster's result page
+[x ] Add Back Button in QuizMaster's result page
 [ ] Add Cancel Button in QuizMaster's Create Quiz Wizard
 [ ] Add Cancel Button in Quiz Participants Quiz List View
 [ ] Make UI Better
