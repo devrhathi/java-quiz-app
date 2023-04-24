@@ -1,29 +1,18 @@
 # Java Quiz App
 
-## Project Structure
+## Technologies Used
+
+1. JavaFX
+2. Maven
+3. MongoDB Java Driver
+
+## Issues to fix
 
 ```
-*Homepage
-	*Login
-		- As QuizMaster
-		- As Participant
-	*SignUp
-		- As QuizMaster
-		- As Participant
-
-*QuizMasterDashboard
-	- QuizList
-	- CreateQuiz
-		- *CreateQuizWizard
-
-*ParticipantDashboard
-	- Join Quiz By ID
-	- List of Attempted Quizzes
-	- *Attend Quiz
-	- *Submit Screen showing user's own results
-
-*Results
-	- Table Containing all users score
-
-Note : Everythin starting with "*" is a sepereate screen, FXML has to be used for UI.
+[ ] Add Back Button in QuizMaster's result page
+[ ] Add Cancel Button in QuizMaster's Create Quiz Wizard
+[ ] Add Cancel Button in Quiz Participants Quiz List View
+[ ] Make UI Better
+[ ] When viewing Leaderboard (result.fxml), initial width should be a bit higher
+[ ] LocalDate.now().toString() stores createdOn and attemptedOn Strings in a weird format, store it in proper DD/MM/YY-HH:MM:SS format
 ```

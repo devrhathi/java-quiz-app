@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/13" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ooadproject.QuizMasterDashboardController">
-    <Label text="QuizMasterDashboard" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+      <VBox xmlns="http://javafx.com/javafx/13" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ooadproject.quizmaster.QuizMasterDashboardController" fx:id="vbox">
+
+    <Label text="Welcome QuizMaster" style="-fx-font-size: 24px;"/>
+    <Label text="List Of Quizzes Created:" style="-fx-font-size: 18px;"/>
+    <TableView fx:id="quizTable">
+        <columns>
+            <TableColumn text="ID" fx:id="quizIdColumn"/>
+            <TableColumn text="Quiz Title" fx:id="quizTitleColumn"/>
+            <TableColumn text="Category" fx:id="categoryColumn"/>
+            <TableColumn text="Created On" fx:id="createdOnColumn"/>
+        </columns>
+    </TableView>
     <Button text="Create Quiz" onAction="#handleCreateQuiz"/>
+
 </VBox>

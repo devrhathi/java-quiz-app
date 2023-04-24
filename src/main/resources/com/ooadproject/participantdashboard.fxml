@@ -2,6 +2,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/13" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ooadproject.ParticipantDashboardController">
+<VBox xmlns="http://javafx.com/javafx/13" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ooadproject.participant.ParticipantDashboardController">
     <Label text="Participant Dashboard" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+    <Label text="Join Quiz" style="-fx-font-size: 18px;" />
+    <TextField fx:id="quizID" />
+    <Button text="Join" onAction="#handleJoinQuiz"/>
+    <Label text="Attempted Quizzes:" style="-fx-font-size: 18px;" />
+    <TableView fx:id="resultsTable">
+        <columns>
+            <TableColumn text="Quiz Title" fx:id="quizTitleColumn"/>
+            <TableColumn text="Created By" fx:id="createdByColumn"/>
+            <TableColumn text="Created On" fx:id="createdOnColumn"/>
+            <TableColumn text="Attempted On" fx:id="attemptedOnColumn"/>
+            <TableColumn text="Marks Scored" fx:id="marksColumn"/>
+        </columns>
+    </TableView>
 </VBox>

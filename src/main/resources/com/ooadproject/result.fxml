@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/13" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ooadproject.ResultController">
+    <Label text="Leaderboard" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+    <TableView fx:id="resultTable">
+        <columns>
+            <TableColumn text="Attempted By" fx:id="attemptedByColumn"/>
+            <TableColumn text="Quiz Title" fx:id="quizNameColumn"/>
+            <TableColumn text="Created On" fx:id="quizCreatedOnColumn"/>
+            <TableColumn text="Attempted On" fx:id="quizAttemptedOnColumn"/>
+            <TableColumn text="Marks Scored" fx:id="marksColumn"/>
+        </columns>
+    </TableView>
+</VBox>
