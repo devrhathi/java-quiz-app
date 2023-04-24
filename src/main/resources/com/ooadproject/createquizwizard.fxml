@@ -8,7 +8,7 @@
 <?import javafx.stage.FileChooser?>
 
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/13" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ooadproject.quizmaster.CreateQuizWizardController">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/13" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ooadproject.quizmaster.CreateQuizWizardController"  style="-fx-background-color: lightblue; -fx-padding: 0 50 30 50;">
     <top>
         <StackPane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #008080;">
             <Label text="Create Quiz" textFill="WHITE">
@@ -33,13 +33,16 @@
             </rowConstraints>
             <Label text="Import Quiz (.csv):" GridPane.columnIndex="0" GridPane.rowIndex="0" />
             <HBox GridPane.columnIndex="1" GridPane.rowIndex="0">
-                <TextField fx:id="filePathTextField" prefWidth="200.0" />
-                <Button text="Browse..." onAction="#handleSelectFile"/>
+                <TextField fx:id="filePathTextField" prefWidth="200.0" style="-fx-background-color: darkblue; -fx-text-fill: white;"/>
+                <Button text="Browse..." onAction="#handleSelectFile" style="-fx-background-color: darkblue; -fx-font-weight: bold; -fx-text-fill: white;
+    -fx-border-radius: 5;
+    -fx-padding: 3 6 6 6;
+    -fx-font-size: 12px;"/>
             </HBox>
             <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <TextField fx:id="quizname" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="quizname" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-background-color: darkblue; -fx-text-fill: white;" />
             <Label text="Category:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <TextField fx:id="quizcategory" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="quizcategory" GridPane.columnIndex="1" GridPane.rowIndex="2" style="-fx-background-color: darkblue; -fx-text-fill: white;" />
 
 
 <!--            <Label text="Quiz Ends In:" GridPane.columnIndex="0" GridPane.rowIndex="2" />-->
@@ -50,8 +53,15 @@
 
 
             <!-- <DateTimePicker GridPane.columnIndex="1" GridPane.rowIndex="2" /> -->
-            <Button text="Create Quiz" GridPane.columnIndex="1" GridPane.rowIndex="3" onAction="#handleCreateQuiz" />
-            <Button text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="3" onAction="#goBack"/>
+            <Button text="Create Quiz" GridPane.columnIndex="1" GridPane.rowIndex="3" onAction="#handleCreateQuiz" style="-fx-background-color: green; -fx-font-weight: bold; -fx-text-fill: white;
+    -fx-border-radius: 5;
+    -fx-padding: 3 6 6 6;
+    -fx-font-size: 16px;
+    " />
+            <Button text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="3" onAction="#goBack" style="-fx-background-color: darkblue; -fx-font-weight: bold; -fx-text-fill: white;
+    -fx-border-radius: 5;
+    -fx-padding: 3 6 6 6;
+    -fx-font-size: 12px;"/>
         </GridPane>
     </center>
 </BorderPane>
