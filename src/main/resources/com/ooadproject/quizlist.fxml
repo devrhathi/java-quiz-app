@@ -9,14 +9,7 @@
 
 <ScrollPane fx:id="scrollPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ooadproject.participant.QuizListController">
     <VBox spacing="10.0" style="-fx-padding: 10px;">
-        <VBox fx:id="vbox" spacing="10.0" style="-fx-padding: 10px;">
-        <!-- Here is an example of how to add questions dynamically using a controller -->
-        <!-- Use the fx:id attribute to reference these elements in the controller -->
-        <!-- For simplicity, I am assuming each question has four options -->
-        <!-- You can replace this with your own list of questions -->
-
-        <!-- A submit button to process the user's answers -->
-        </VBox>
+        <VBox fx:id="vbox" spacing="10.0" style="-fx-padding: 10px;"/>
         <Button fx:id="submitButton" text="Submit" onAction="#handleSubmit"/>
     </VBox>
 </ScrollPane>

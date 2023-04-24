@@ -1,10 +1,10 @@
 package com.ooadproject.quizmaster;
 
 import com.ooadproject.App;
+import com.ooadproject.models.Database.Database;
 import com.ooadproject.models.QuizModel.Question;
 import com.ooadproject.models.QuizModel.Quiz;
 import com.ooadproject.models.UserModel.SingletonFactoryUser;
-import com.ooadproject.models.UserModel.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
@@ -19,10 +19,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 
 public class CreateQuizWizardController {
 
@@ -35,8 +32,6 @@ public class CreateQuizWizardController {
     @FXML
     private TextField quizcategory;
 
-    MongoClient mongoClient;
-    MongoDatabase database;
     MongoCollection<Document> collection;
 
     @FXML
@@ -57,10 +52,7 @@ public class CreateQuizWizardController {
     }
 
     public void initialize() {
-        mongoClient = MongoClients
-                .create("mongodb+srv://admin:ooadproject@cluster0.95wbe.mongodb.net/?retryWrites=true&w=majority");
-        database = mongoClient.getDatabase("quizapp");
-        collection = database.getCollection("quiz");
+        collection = Database.getInstance().getCollection("quiz");
     }
 
     private boolean createQuizDB() throws IOException {

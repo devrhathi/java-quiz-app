@@ -2,6 +2,7 @@ package com.ooadproject;
 
 import java.io.IOException;
 
+import com.ooadproject.models.Database.Database;
 import com.ooadproject.models.UserModel.SingletonFactoryUser;
 import com.ooadproject.models.UserModel.User;
 
@@ -12,10 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import org.bson.Document;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 
 public class AuthenticationController {
     @FXML
@@ -50,8 +48,6 @@ public class AuthenticationController {
     @FXML
     private Button signupAsParticipantButton;
 
-    MongoClient mongoClient;
-    MongoDatabase database;
     MongoCollection<Document> collection;
     SingletonFactoryUser singletonFactoryUser = SingletonFactoryUser.getInstance();
 
@@ -61,8 +57,7 @@ public class AuthenticationController {
         String password = loginPasswordField.getText();
 
         singletonFactoryUser.setUser("", username, password, "quizmaster");
-        System.out.println("Login as QuizMaster clicked with username: " + username + " and password: " + password);
-        if(loginDB())
+        if (loginDB())
             App.setRoot("quizmasterdashboard");
     }
 
@@ -72,8 +67,7 @@ public class AuthenticationController {
         String password = loginPasswordField.getText();
 
         singletonFactoryUser.setUser("", username, password, "participant");
-        System.out.println("Login as Participant clicked with username: " + username + " and password: " + password);
-        if(loginDB())
+        if (loginDB())
             App.setRoot("participantdashboard");
     }
 
@@ -82,10 +76,8 @@ public class AuthenticationController {
         String name = signUpNameField.getText();
         String username = signUpUsernameField.getText();
         String password = signUpPasswordField.getText();
-        System.out.println(
-                "Signup as QuizMaster clicked with name: " + name + ", username: " + username + " and password: " + password);
         singletonFactoryUser.setUser(name, username, password, "quizmaster");
-        if(registerDB())
+        if (registerDB())
             App.setRoot("quizmasterdashboard");
 
     }
@@ -95,11 +87,9 @@ public class AuthenticationController {
         String name = signUpNameField.getText();
         String username = signUpUsernameField.getText();
         String password = signUpPasswordField.getText();
-        System.out.println("Signup as Participant clicked with name: " + name + ", username: " + username + " and password: "
-                + password);
 
         singletonFactoryUser.setUser(name, username, password, "participant");
-        if(registerDB())
+        if (registerDB())
             App.setRoot("quizmasterdashboard");
         App.setRoot("participantdashboard");
 
@@ -111,30 +101,31 @@ public class AuthenticationController {
     }
 
     public void initialize() {
-        mongoClient = MongoClients
-                .create("mongodb+srv://admin:ooadproject@cluster0.95wbe.mongodb.net/?retryWrites=true&w=majority");
-         database = mongoClient.getDatabase("quizapp");
-         collection = database.getCollection("users");
+        collection = Database.getInstance().getCollection("users");
     }
 
-    private boolean loginDB(){
+    private boolean loginDB() {
         User user = singletonFactoryUser.getUser();
-        Document doc = new Document().append("username", user.getUsername()).append("password", user.getPassword()).append("role", user.getRole());;
+        Document doc = new Document().append("username", user.getUsername()).append("password", user.getPassword())
+                .append("role", user.getRole());
+        ;
         Document result;
         try {
             result = collection.find(doc).first();
-            if(result != null)
-            return true;
-            else return false;
+            if (result != null)
+                return true;
+            else
+                return false;
         } catch (Exception e) {
             System.out.println("Insert operation failed: " + e.getMessage());
             return false;
         }
     }
 
-    private boolean registerDB(){
+    private boolean registerDB() {
         User user = singletonFactoryUser.getUser();
-        Document doc = new Document().append("name", user.getName()).append("username", user.getUsername()).append("password", user.getPassword()).append("role", user.getRole());
+        Document doc = new Document().append("name", user.getName()).append("username", user.getUsername())
+                .append("password", user.getPassword()).append("role", user.getRole());
 
         try {
             // insert the document into the collection

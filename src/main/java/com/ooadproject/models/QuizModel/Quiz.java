@@ -1,8 +1,6 @@
 package com.ooadproject.models.QuizModel;
 
-import java.time.LocalDateTime;
 import java.util.List;
-
 import org.bson.Document;
 
 public class Quiz {

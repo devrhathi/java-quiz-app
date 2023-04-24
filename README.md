@@ -15,4 +15,5 @@
 [ ] Make UI Better
 [ ] When viewing Leaderboard (result.fxml), initial width should be a bit higher
 [ ] LocalDate.now().toString() stores createdOn and attemptedOn Strings in a weird format, store it in proper DD/MM/YY-HH:MM:SS format
+[x] Database Singleton Class
 ```

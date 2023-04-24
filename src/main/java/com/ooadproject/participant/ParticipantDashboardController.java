@@ -8,12 +8,12 @@ import java.util.List;
 import org.bson.Document;
 
 import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.ooadproject.App;
+import com.ooadproject.models.Database.Database;
 import com.ooadproject.models.ResultModel.Result;
 import com.ooadproject.models.UserModel.SingletonFactoryUser;
 
@@ -51,10 +51,11 @@ public class ParticipantDashboardController {
     List<Result> results;
 
     public void initialize() {
-        mongoClient = MongoClients
-                .create("mongodb+srv://admin:ooadproject@cluster0.95wbe.mongodb.net/?retryWrites=true&w=majority");
-        database = mongoClient.getDatabase("quizapp");
-        collection = database.getCollection("result");
+        // mongoClient = MongoClients
+        // .create("mongodb+srv://admin:ooadproject@cluster0.95wbe.mongodb.net/?retryWrites=true&w=majority");
+        // database = mongoClient.getDatabase("quizapp");
+        // collection = database.getCollection("result");
+        collection = Database.getInstance().getCollection("result");
 
         quizTitleColumn.setCellValueFactory(new PropertyValueFactory<>("quizName"));
         createdByColumn.setCellValueFactory(new PropertyValueFactory<>("createdBy"));
@@ -71,7 +72,6 @@ public class ParticipantDashboardController {
         String username = SingletonFactoryUser.getInstance().getUser().getUsername();
         MongoCursor<Document> cursor = collection.find(Filters.eq("username", username)).iterator();
         results = new ArrayList<>();
-        System.out.println(username);
         while (cursor.hasNext()) {
             Document doc = cursor.next();
             Result quiz = new Result(doc);
