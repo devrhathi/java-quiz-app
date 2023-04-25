@@ -9,17 +9,9 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Sorts;
 
 import org.bson.Document;
-import org.bson.types.ObjectId;
-
+import com.ooadproject.models.Database.Database;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.ooadproject.models.ResultModel.Result;
@@ -49,22 +41,11 @@ public class ResultController {
     @FXML
     private TableColumn<Result, Integer> marksColumn;
 
-    @FXML
-    private void goBack() throws IOException{
-        App.setRoot("authentication");
-    }
-
     List<Result> results;
-    MongoClient mongoClient;
-    MongoDatabase database;
     MongoCollection<Document> collection;
 
-
     public void initialize() {
-        mongoClient = MongoClients
-                .create("mongodb+srv://admin:ooadproject@cluster0.95wbe.mongodb.net/?retryWrites=true&w=majority");
-        database = mongoClient.getDatabase("quizapp");
-        collection = database.getCollection("result");
+        collection = Database.getInstance().getCollection("result");
 
         attemptedByColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         quizNameColumn.setCellValueFactory(new PropertyValueFactory<>("quizName"));
@@ -76,19 +57,22 @@ public class ResultController {
         resultTable.getItems().addAll(results);
     }
 
-    
-
     private void loadResults() {
         MongoCursor<Document> cursor = collection.find(Filters.eq("quizId", _id)).sort(Sorts.descending("marks"))
                 .iterator();
         results = new ArrayList<>();
         while (cursor.hasNext()) {
             Document doc = cursor.next();
-            System.out.println(doc.get("username").toString());
             Result result = new Result(doc);
             results.add(result);
         }
         cursor.close();
+    }
+
+    @FXML
+    private void goBack() throws IOException {
+        App.setRoot("quizmasterdashboard");
+
     }
 
 }

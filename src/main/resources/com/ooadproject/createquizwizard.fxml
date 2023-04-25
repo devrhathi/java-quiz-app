@@ -39,10 +39,11 @@
     -fx-padding: 3 6 6 6;
     -fx-font-size: 12px;"/>
             </HBox>
-            <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <TextField fx:id="quizname" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-background-color: darkblue; -fx-text-fill: white;" />
-            <Label text="Category:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <TextField fx:id="quizcategory" GridPane.columnIndex="1" GridPane.rowIndex="2" style="-fx-background-color: darkblue; -fx-text-fill: white;" />
+
+            <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="quizname" GridPane.columnIndex="1" GridPane.rowIndex="2" style="-fx-background-color: darkblue; -fx-text-fill: white;" />
+            <Label text="Category:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <TextField fx:id="quizcategory" GridPane.columnIndex="1" GridPane.rowIndex="3" style="-fx-background-color: darkblue; -fx-text-fill: white;" />
 
 
 <!--            <Label text="Quiz Ends In:" GridPane.columnIndex="0" GridPane.rowIndex="2" />-->
@@ -53,15 +54,17 @@
 
 
             <!-- <DateTimePicker GridPane.columnIndex="1" GridPane.rowIndex="2" /> -->
-            <Button text="Create Quiz" GridPane.columnIndex="1" GridPane.rowIndex="3" onAction="#handleCreateQuiz" style="-fx-background-color: green; -fx-font-weight: bold; -fx-text-fill: white;
+            <Button text="Create Quiz" GridPane.columnIndex="1" GridPane.rowIndex="4" onAction="#handleCreateQuiz" style="-fx-background-color: green; -fx-font-weight: bold; -fx-text-fill: white;
     -fx-border-radius: 5;
     -fx-padding: 3 6 6 6;
     -fx-font-size: 16px;
     " />
-            <Button text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="3" onAction="#goBack" style="-fx-background-color: darkblue; -fx-font-weight: bold; -fx-text-fill: white;
+            <Button text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="5" onAction="#goBack" style="-fx-background-color: darkblue; -fx-font-weight: bold; -fx-text-fill: white;
     -fx-border-radius: 5;
     -fx-padding: 3 6 6 6;
     -fx-font-size: 12px;"/>
         </GridPane>
     </center>
+    
+    
 </BorderPane>

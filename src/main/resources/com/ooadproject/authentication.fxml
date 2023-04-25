@@ -60,6 +60,4 @@
         </VBox>
     </HBox>
 
-    <Button text="Go To Result Page" onAction="#switchToResult" />
-    
 </VBox>

@@ -40,11 +40,11 @@ public class Result {
     }
 
     public String getQuizCreatedOn() {
-        return this.resultDocument.get("quizCreatedOn").toString().substring(0,10)+" - "+this.resultDocument.get("quizCreatedOn").toString().substring(11,19);
+        return this.resultDocument.get("quizCreatedOn").toString();
     }
 
     public String getQuizAttemptedOn() {
-        return this.resultDocument.get("quizAttemptedOn").toString().substring(0,10)+" - "+this.resultDocument.get("quizAttemptedOn").toString().substring(11,19);
+        return this.resultDocument.get("quizAttemptedOn").toString();
     }
 
     public int getMarks() {

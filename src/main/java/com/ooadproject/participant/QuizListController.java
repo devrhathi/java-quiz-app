@@ -1,15 +1,15 @@
 package com.ooadproject.participant;
 
 import com.mongodb.client.*;
-import com.mongodb.client.model.Filters;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 
 import org.bson.Document;
-
+import com.ooadproject.models.Database.Database;
 import com.ooadproject.App;
 import com.ooadproject.models.ResultModel.Result;
 import com.ooadproject.models.QuizModel.Question;
@@ -23,8 +23,6 @@ import org.bson.types.ObjectId;
 
 public class QuizListController {
     private static String quizId;
-    MongoClient mongoClient;
-    MongoDatabase database;
     MongoCollection<Document> collection;
     Quiz quizList;
 
@@ -38,7 +36,7 @@ public class QuizListController {
     private Button submitButton;
 
     @FXML
-    private void goBack() throws IOException{
+    private void goBack() throws IOException {
         App.setRoot("participantdashboard");
     }
 
@@ -50,8 +48,6 @@ public class QuizListController {
     public static void setQuizId(String id) {
         quizId = id;
     }
-
-    
 
     private HashMap<String, Integer> resultMap;
 
@@ -68,10 +64,7 @@ public class QuizListController {
     }
 
     public void initialize() {
-        mongoClient = MongoClients
-                .create("mongodb+srv://admin:ooadproject@cluster0.95wbe.mongodb.net/?retryWrites=true&w=majority");
-        database = mongoClient.getDatabase("quizapp");
-        collection = database.getCollection("quiz");
+        collection = Database.getInstance().getCollection("quiz");
         resultMap = new HashMap<>();
         loadQuizData();
     }
@@ -133,15 +126,18 @@ public class QuizListController {
         for (int value : resultMap.values()) {
             totalMarks += value;
         }
-        System.out.println("Total Marks : " + totalMarks);
         if (saveResultToDB())
             App.setRoot("participantdashboard");
     }
 
     private boolean saveResultToDB() {
-        collection = database.getCollection("result");
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy-HH:mm:ss");
+        String formattedDateTime = now.format(formatter);
+
+        collection = Database.getInstance().getCollection("result");
         Result result = new Result(SingletonFactoryUser.getInstance().getUser().getUsername(), quizList.getUsername(),
-                quizList.get_id(), quizList.getTitle(), quizList.getCreatedOn(), LocalDateTime.now().toString(),
+                quizList.get_id(), quizList.getTitle(), quizList.getCreatedOn(), formattedDateTime,
                 totalMarks);
 
         try {

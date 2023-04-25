@@ -1,17 +1,15 @@
 package com.ooadproject.participant;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.Document;
 
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
+import com.ooadproject.models.Database.Database;
+
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.ooadproject.App;
 import com.ooadproject.models.ResultModel.Result;
@@ -44,17 +42,12 @@ public class ParticipantDashboardController {
     @FXML
     private TableColumn<Result, Integer> marksColumn;
 
-    MongoClient mongoClient;
-    MongoDatabase database;
     MongoCollection<Document> collection;
 
     List<Result> results;
 
     public void initialize() {
-        mongoClient = MongoClients
-                .create("mongodb+srv://admin:ooadproject@cluster0.95wbe.mongodb.net/?retryWrites=true&w=majority");
-        database = mongoClient.getDatabase("quizapp");
-        collection = database.getCollection("result");
+        collection = Database.getInstance().getCollection("result");
 
         quizTitleColumn.setCellValueFactory(new PropertyValueFactory<>("quizName"));
         createdByColumn.setCellValueFactory(new PropertyValueFactory<>("createdBy"));
@@ -68,15 +61,14 @@ public class ParticipantDashboardController {
     }
 
     @FXML
-    private void goBack() throws IOException{
+    private void goBack() throws IOException {
         App.setRoot("authentication");
     }
-    
+
     private void loadQuizzesAttempted() {
         String username = SingletonFactoryUser.getInstance().getUser().getUsername();
         MongoCursor<Document> cursor = collection.find(Filters.eq("username", username)).iterator();
         results = new ArrayList<>();
-        System.out.println(username);
         while (cursor.hasNext()) {
             Document doc = cursor.next();
             Result quiz = new Result(doc);
@@ -92,23 +84,5 @@ public class ParticipantDashboardController {
             return;
         QuizListController.setQuizId(quizID.getText());
         App.setRoot("quizlist");
-    }
-
-    public static class Quiz {
-        private String title;
-        private String createdOn;
-
-        public Quiz(String title, LocalDateTime createdOn) {
-            this.title = title;
-            this.createdOn = createdOn.toString().substring(0,10);
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public String getCreatedOn() {
-            return createdOn.toString().substring(0,10)+" - "+createdOn.toString().substring(11,19);
-        }
     }
 }
