@@ -2,7 +2,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/13" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ooadproject.ResultController">
+<VBox xmlns="http://javafx.com/javafx/13" alignment="CENTER" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ooadproject.ResultController" style="-fx-min-width: 650">
     <Label text="Leaderboard" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
     <TableView fx:id="resultTable">
         <columns>
