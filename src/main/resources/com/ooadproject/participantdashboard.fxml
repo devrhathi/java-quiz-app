@@ -10,6 +10,7 @@
     -fx-border-radius: 5;
     -fx-padding: 3 6 6 6;
     -fx-font-size: 16px;
+
     "/>
     <Label text="Attempted Quizzes:" style="-fx-font-size: 18px;" />
     <TableView fx:id="resultsTable" style="-fx-background-color: lightblue;">

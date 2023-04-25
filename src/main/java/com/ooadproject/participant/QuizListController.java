@@ -37,6 +37,11 @@ public class QuizListController {
     @FXML
     private Button submitButton;
 
+    @FXML
+    private void goBack() throws IOException{
+        App.setRoot("participantdashboard");
+    }
+
     // Here are the ToggleGroups for each question's options
     private ToggleGroup optionsGroup;
 
@@ -45,6 +50,8 @@ public class QuizListController {
     public static void setQuizId(String id) {
         quizId = id;
     }
+
+    
 
     private HashMap<String, Integer> resultMap;
 

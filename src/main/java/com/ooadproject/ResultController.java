@@ -49,10 +49,16 @@ public class ResultController {
     @FXML
     private TableColumn<Result, Integer> marksColumn;
 
+    @FXML
+    private void goBack() throws IOException{
+        App.setRoot("authentication");
+    }
+
     List<Result> results;
     MongoClient mongoClient;
     MongoDatabase database;
     MongoCollection<Document> collection;
+
 
     public void initialize() {
         mongoClient = MongoClients
@@ -70,10 +76,7 @@ public class ResultController {
         resultTable.getItems().addAll(results);
     }
 
-    @FXML
-    private void goBack() throws IOException{
-        App.setRoot("authentication");
-    }
+    
 
     private void loadResults() {
         MongoCursor<Document> cursor = collection.find(Filters.eq("quizId", _id)).sort(Sorts.descending("marks"))

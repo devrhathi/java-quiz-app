@@ -96,19 +96,19 @@ public class ParticipantDashboardController {
 
     public static class Quiz {
         private String title;
-        private LocalDateTime createdOn;
+        private String createdOn;
 
         public Quiz(String title, LocalDateTime createdOn) {
             this.title = title;
-            this.createdOn = createdOn;
+            this.createdOn = createdOn.toString().substring(0,10);
         }
 
         public String getTitle() {
             return title;
         }
 
-        public LocalDateTime getCreatedOn() {
-            return createdOn;
+        public String getCreatedOn() {
+            return createdOn.toString().substring(0,10)+" - "+createdOn.toString().substring(11,19);
         }
     }
 }
